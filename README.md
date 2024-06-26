@@ -1,2 +1,2 @@
 # Rosalind
- Solutions to Rosalind bioinformatics problems
+ My solutions to Rosalind bioinformatics problems using python.
