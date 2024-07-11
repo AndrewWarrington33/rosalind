@@ -1,18 +1,21 @@
-#Given: A string s of length at most 10000 letters.
+# Read the input file
+with open('dictionaries/rosalind_ini6.txt', 'r') as infile:
+    content = infile.read().strip()  # Read and strip any leading/trailing whitespace
 
-#Return: The number of occurrences of each word in s, where words are separated by spaces. 
-# Words are case-sensitive, and the lines in the output can be in any order.
+# Split the content into words
+words = content.split()
 
-with open('rosalind_ini6.txt', 'r') as infile:
-    lines = infile.readlines()
+# Initialize a dictionary to count occurrences
+word_count = {}
 
-d = {}
-
-for word in lines.split(' '):
-    count = 1
-    if word in d:
-        d['word'] = count + 1
-        count += 1
+# Count each word
+for word in words:
+    if word in word_count:
+        word_count[word] += 1
     else:
-        d['word'] = count
+        word_count[word] = 1
 
+# Write the output file
+with open("dictionaries/output.txt", "w") as output:
+    for word, count in word_count.items():
+        output.write(f"{word} {count}\n")
