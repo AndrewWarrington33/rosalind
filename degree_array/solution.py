@@ -7,30 +7,27 @@
 
 # See Figure 3 for visual example from the sample dataset.
 
-# with open('degree_array/rosalind_deg.txt', 'r') as input:
-#     f = input.read()
+with open('degree_array/rosalind_deg.txt', 'r') as input:
+    f = input.read()
 
-# arr = []
-# for value in f:
-#     f.strip()
-#     if value.isdigit():
-#         arr.append(int(value))
+elements = f.split()
+arr = [int(element) for element in elements]
 
-n = 6
-m = 7
-arr = [1, 2,
-       2, 3,
-       6, 3,
-       5, 6,
-       2, 5,
-       2, 4,
-       4, 1]
+n = arr[0]  # number of vertices
+m = arr[1]  # number of edges
 
+# Initialize the degree array with zeros
 d = [0] * n
 
+# Read the edges and update the degree array
+for i in range(2, len(arr), 2):
+    u = arr[i]
+    v = arr[i+1]
+    d[u-1] += 1
+    d[v-1] += 1
 
-for i in range(1,n+1):
-    for j in range(0,len(arr)):
-        if arr[j] == i:
-           d[i-1] += 1
+with open('degree_array/output.txt', 'w') as file:
+    # Write each item in output separated by a space
+    file.write(" ".join(map(str, d)) + "\n")
+
 print(d)
